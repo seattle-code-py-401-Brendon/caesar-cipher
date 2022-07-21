@@ -27,22 +27,16 @@ Create a crack method that brute forces through all the shifts
 # create encrypt function
 def encrypt(phrase=None, shift=None):
     alphabet = Clock_queue()
-    phrase_queue = Clock_queue()
-    phrase = 'hello'
-
-    # the phrase queue to be encrypted
-    for phrase_letter in phrase:
-        phrase_queue.enqueue(phrase_letter, 'r')
-
-    phrase_queue.clock_wise()
-    phrase_queue.print()
-
+    secret_message = ''
     # the encryption clock
     lowercase_alphabets = list(string.ascii_lowercase)
     for letter in lowercase_alphabets:
         alphabet.enqueue(letter, 'r')
 
-
+    for unchanged_letter in phrase:
+        encrypted_letter = alphabet.clock_wise(unchanged_letter, shift)
+        secret_message += encrypted_letter
+    print(secret_message)
 
 
 def decrypt():
@@ -54,4 +48,6 @@ def crack():
 
 
 if __name__ == "__main__":
-    encrypt()
+    phrase = 'hi'
+    encrypt(phrase, 10)
+
