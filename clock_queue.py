@@ -65,13 +65,24 @@ class Clock_queue:
                     self.rear.next = None
                     return temp.value
 
-    def clock_wise(self, shift_num):
+    # encryption helper method
+    def clock_wise(self, letter, shift_num):
         # shift clockwise
-        for x in range(shift_num):
+        encryption = []
+        if self.front.value == letter:
+            print(letter)
+            for x in range(shift_num):
+                value = self.dequeue('f')
+                self.enqueue(value, 'r')
+            letter = self.front.value
+            encryption.append(letter)
+        else:
             value = self.dequeue('f')
             self.enqueue(value, 'r')
+            return clock_queue.clock_wise(letter, shift_num)
+        return encryption
 
-    def counter_clock_wise(self, shift_num):
+    def counter_clock_wise(self, letter, shift_num):
         for x in range(shift_num):
             value = self.dequeue('r')
             self.enqueue(value, 'f')
@@ -97,5 +108,4 @@ if __name__ == '__main__':
     clock_queue.enqueue('a', 'r')
     clock_queue.enqueue('b', 'r')
     clock_queue.enqueue('c', 'r')
-    clock_queue.counter_clock_wise(2)
-    clock_queue.print()
+    print(clock_queue.clock_wise('c', 1))

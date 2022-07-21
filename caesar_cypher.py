@@ -1,5 +1,6 @@
+from clock_queue import Clock_queue
 import string
-from clock_queue import Clock_queue, Node
+
 """
 save a list of the alphabet
 create a function called encrypt
@@ -19,18 +20,38 @@ Create a crack method that brute forces through all the shifts
 
    
 """
+
+
 # create alphabet
 
 # create encrypt function
-def encrypt(phrase, shift=None):
-    pass
+def encrypt(phrase=None, shift=None):
+    alphabet = Clock_queue()
+    phrase_queue = Clock_queue()
+    phrase = 'hello'
+
+    # the phrase queue to be encrypted
+    for phrase_letter in phrase:
+        phrase_queue.enqueue(phrase_letter, 'r')
+
+    phrase_queue.clock_wise()
+    phrase_queue.print()
+
+    # the encryption clock
+    lowercase_alphabets = list(string.ascii_lowercase)
+    for letter in lowercase_alphabets:
+        alphabet.enqueue(letter, 'r')
+
+
+
 
 def decrypt():
     pass
+
 
 def crack():
     pass
 
 
 if __name__ == "__main__":
-    pass
+    encrypt()
