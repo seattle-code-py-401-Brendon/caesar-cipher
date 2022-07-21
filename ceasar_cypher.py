@@ -29,14 +29,17 @@ def encrypt(phrase=None, shift=None):
     alphabet = Clock_queue()
     secret_message = ''
     # the encryption clock
-    lowercase_alphabets = list(string.ascii_lowercase)
-    for letter in lowercase_alphabets:
+    if phrase.islower():
+        whole_alphabets = list(string.ascii_lowercase)
+    else:
+        whole_alphabets = list(string.ascii_uppercase)
+    for letter in whole_alphabets:
         alphabet.enqueue(letter, 'r')
 
     for unchanged_letter in phrase:
         encrypted_letter = alphabet.clock_wise(unchanged_letter, shift)
         secret_message += encrypted_letter
-    print(secret_message)
+    return secret_message
 
 
 def decrypt():

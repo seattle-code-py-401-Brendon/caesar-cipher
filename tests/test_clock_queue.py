@@ -13,7 +13,7 @@ def test_create_queue():
 
 def test_add_node():
     new_queue = Clock_queue()
-    new_queue.enqueue(1,'r')
+    new_queue.enqueue(1, 'r')
     actual = new_queue.peek()
     expected = 1
     assert actual == expected
@@ -23,10 +23,10 @@ def test_add_node():
 
 def test_remove_node_from_front():
     new_queue = Clock_queue()
-    new_queue.enqueue(1,'r')
-    new_queue.enqueue(2,'r')
-    new_queue.enqueue(3,'r')
-    actual = new_queue.dequeue()
+    new_queue.enqueue(1, 'r')
+    new_queue.enqueue(2, 'r')
+    new_queue.enqueue(3, 'r')
+    actual = new_queue.dequeue('f')
     expected = 1
     assert actual == expected
 
@@ -35,9 +35,9 @@ def test_remove_node_from_front():
 
 def test_pointers_for_front():
     new_queue = Clock_queue()
-    new_queue.enqueue(1,'r')
-    new_queue.enqueue(2,'r')
-    new_queue.enqueue(3,'r')
+    new_queue.enqueue(1, 'r')
+    new_queue.enqueue(2, 'r')
+    new_queue.enqueue(3, 'r')
     actual = new_queue.rear.prev.value
     expected = 2
     assert actual == expected
@@ -46,12 +46,12 @@ def test_pointers_for_front():
 # @pytest.mark.skip('')
 def test_clock_wise_shift():
     new_queue = Clock_queue()
-    new_queue.enqueue('a','r')
-    new_queue.enqueue('b','r')
-    new_queue.enqueue('c','r')
-    new_queue.enqueue('d','r')
-    new_queue.enqueue('e','r')
-    new_queue.clock_wise(2)
+    new_queue.enqueue('a', 'r')
+    new_queue.enqueue('b', 'r')
+    new_queue.enqueue('c', 'r')
+    new_queue.enqueue('d', 'r')
+    new_queue.enqueue('e', 'r')
+    new_queue.clock_wise('c', 2)
     actual = new_queue.peek()
-    expected = 'c'
+    expected = 'e'
     assert actual == expected
