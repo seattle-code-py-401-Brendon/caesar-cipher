@@ -43,6 +43,15 @@ def test_pointers_for_front():
     assert actual == expected
 
 
-@pytest.mark.skip('')
-def test_pointers_for_rear():
-    pass
+# @pytest.mark.skip('')
+def test_clock_wise_shift():
+    new_queue = Clock_queue()
+    new_queue.enqueue('a')
+    new_queue.enqueue('b')
+    new_queue.enqueue('c')
+    new_queue.enqueue('d')
+    new_queue.enqueue('e')
+    new_queue.clock_wise(2)
+    actual = new_queue.peek()
+    expected = 'c'
+    assert actual == expected

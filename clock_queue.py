@@ -34,6 +34,15 @@ class Clock_queue:
             self.front.prev = None
             return temp.value
 
+    def clock_wise(self, shift_num):
+        for x in range(shift_num):
+            value = self.dequeue()
+            self.enqueue(value)
+
+    def counter_clock_wise(self, shift_num):
+        pass
+
+
     def print(self):
         if self.front:
             current = self.front
@@ -52,10 +61,10 @@ class Clock_queue:
 
 if __name__ == '__main__':
     clock_queue = Clock_queue()
-    clock_queue.enqueue('1')
-    clock_queue.enqueue('2')
-    clock_queue.enqueue('3')
-    # print(clock_queue.front.prev)
-    # print(clock_queue.rear.next)
-    clock_queue.dequeue()
+    clock_queue.enqueue('a')
+    clock_queue.enqueue('b')
+    clock_queue.enqueue('c')
+    clock_queue.enqueue('d')
+    clock_queue.enqueue('e')
+    clock_queue.clock_wise(3)
     clock_queue.print()
