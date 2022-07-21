@@ -18,19 +18,21 @@ class Clock_queue:
             self.front = self.rear = node
 
         else:
+            # THIS TOOK SO LONG TO FIGURE OUT!
             prev_node = self.rear
             self.rear.next = node
             node.prev = prev_node
         self.rear = node
 
     def dequeue(self):
-        if self.front:
+        #     remove from front
+        if self.front is None:
+            return "Empty Queue"
+        else:
             temp = self.front
             self.front = temp.next
+            self.front.prev = None
             return temp.value
-
-        else:
-            print('empty queue')
 
     def print(self):
         if self.front:
@@ -41,10 +43,19 @@ class Clock_queue:
         else:
             return 'empty queue'
 
+    def peek(self):
+        if self.front:
+            return self.front.value
+        else:
+            return "Empty Queue"
+
 
 if __name__ == '__main__':
     clock_queue = Clock_queue()
     clock_queue.enqueue('1')
     clock_queue.enqueue('2')
-    print(clock_queue.front.next.value)
-    print(clock_queue.rear.prev.value)
+    clock_queue.enqueue('3')
+    # print(clock_queue.front.prev)
+    # print(clock_queue.rear.next)
+    clock_queue.dequeue()
+    clock_queue.print()
