@@ -1,5 +1,5 @@
 import string
-
+from clock_queue import Clock_queue, Node
 """
 save a list of the alphabet
 create a function called encrypt
