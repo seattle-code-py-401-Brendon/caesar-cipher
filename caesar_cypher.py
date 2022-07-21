@@ -20,23 +20,17 @@ Create a crack method that brute forces through all the shifts
    
 """
 # create alphabet
-alphabet = list(string.ascii_lowercase)
-for i in range(len(alphabet)):
-    print(i, alphabet[i])
-
 
 # create encrypt function
 def encrypt(phrase, shift=None):
-    shifted_phrase = ''
-    # get the index location for alphabet
-    for letter in phrase:
-        for i in range(len(alphabet) -1):
-            if alphabet[i] == letter:
-                letter = alphabet[i + shift]
-                shifted_phrase += letter
-    print(shifted_phrase)
+    pass
+
+def decrypt():
+    pass
+
+def crack():
+    pass
 
 
 if __name__ == "__main__":
-    phrase_one = 'axbycgcdkd'
-    encrypt(phrase_one, 1)
+    pass
