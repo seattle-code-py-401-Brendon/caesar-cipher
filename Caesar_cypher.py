@@ -24,12 +24,13 @@ alphabet = list(string.ascii_lowercase)
 for i in range(len(alphabet)):
     print(i, alphabet[i])
 
+
 # create encrypt function
 def encrypt(phrase, shift=None):
     shifted_phrase = ''
     # get the index location for alphabet
-    for i in range(len(alphabet)):
-        for letter in phrase:
+    for letter in phrase:
+        for i in range(len(alphabet) -1):
             if alphabet[i] == letter:
                 letter = alphabet[i + shift]
                 shifted_phrase += letter
@@ -37,5 +38,5 @@ def encrypt(phrase, shift=None):
 
 
 if __name__ == "__main__":
-    phrase_one = 'ax by cgc dkd'
+    phrase_one = 'axbycgcdkd'
     encrypt(phrase_one, 1)
