@@ -1,5 +1,6 @@
 import pytest
 from clock_queue import Clock_queue, Node
+from ceasar_cypher import decrypt,encrypt
 
 
 # @pytest.mark.skip('create queue')
@@ -54,4 +55,14 @@ def test_clock_wise_shift():
     new_queue.clock_wise('c', 2)
     actual = new_queue.peek()
     expected = 'e'
+    assert actual == expected
+
+
+# @pytest.mark.skip(' ')
+def test_decrypt_no_whitespace():
+    original = "gimmeaone"
+    shift = 5
+    encrypted = encrypt(original, shift)
+    actual = decrypt(encrypted, shift)
+    expected = original
     assert actual == expected
