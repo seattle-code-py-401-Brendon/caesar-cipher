@@ -14,11 +14,7 @@ shifts that push a letter out or range should wrap around.
 """
 Create a function called decrypt
     takes in the encrypted message and performs the encrypt but with the negative shift
-    
-    
 Create a crack method that brute forces through all the shifts 
-
-   
 """
 
 
@@ -29,21 +25,40 @@ def encrypt(phrase=None, shift=None):
     alphabet = Clock_queue()
     secret_message = ''
     # the encryption clock
-    if phrase.islower():
-        whole_alphabets = list(string.ascii_lowercase)
-    else:
-        whole_alphabets = list(string.ascii_uppercase)
-    for letter in whole_alphabets:
+
+    lower_alphabets = list(string.ascii_lowercase)
+
+    for letter in lower_alphabets:
         alphabet.enqueue(letter, 'r')
 
     for unchanged_letter in phrase:
-        encrypted_letter = alphabet.clock_wise(unchanged_letter, shift)
-        secret_message += encrypted_letter
+        if unchanged_letter.isupper():
+            encrypted_letter = alphabet.clock_wise(unchanged_letter.lower(), shift)
+            secret_message += encrypted_letter.upper()
+        else:
+            encrypted_letter = alphabet.clock_wise(unchanged_letter, shift)
+            secret_message += encrypted_letter
+
     return secret_message
 
 
-def decrypt():
-    pass
+def decrypt(phrase=None, shift=None):
+    alphabet = Clock_queue()
+    decrypt_msg = ''
+    lower_alphabets = list(string.ascii_lowercase)
+
+    for letter in lower_alphabets:
+        alphabet.enqueue(letter, 'r')
+
+    for changed_letter in phrase:
+        if changed_letter.isupper():
+            d = alphabet.counter_clock_wise(changed_letter.lower(), shift)
+            decrypt_msg += d.upper()
+        else:
+            d = alphabet.counter_clock_wise(changed_letter, shift)
+            decrypt_msg += d
+
+    return decrypt_msg
 
 
 def crack():
@@ -51,6 +66,6 @@ def crack():
 
 
 if __name__ == "__main__":
-    phrase = 'hi'
-    encrypt(phrase, 10)
-
+    list1 = encrypt("Gimme a 1!", 1)
+    print(list1)
+    print(decrypt(list1, 1))

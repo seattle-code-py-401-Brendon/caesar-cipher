@@ -1,3 +1,5 @@
+import string
+
 class Node:
     def __init__(self, value=None, next=None, prev=None):
         self.value = value
@@ -69,7 +71,9 @@ class Clock_queue:
     def clock_wise(self, letter=None, shift_num=None):
         # shift clockwise
         encryption = []
-        if self.front.value == letter:
+        if letter == ' ' or letter == ',' or letter == '!' or letter == '1':
+            return letter
+        elif self.front.value == letter:
             for x in range(shift_num):
                 value = self.dequeue('f')
                 self.enqueue(value, 'r')
@@ -81,10 +85,20 @@ class Clock_queue:
             return self.clock_wise(letter, shift_num)
         return encrypted_letter
 
-    def counter_clock_wise(self, letter, shift_num):
-        for x in range(shift_num):
+    def counter_clock_wise(self, letter=None, shift_num=None):
+        if letter == ' ' or letter == ',' or letter == '!' or letter == '1':
+            return letter
+        elif self.rear.value == letter:
+            for x in range(shift_num):
+                value = self.dequeue('r')
+                self.enqueue(value, 'f')
+            encrypted_letter = self.rear.value
+
+        else:
             value = self.dequeue('r')
             self.enqueue(value, 'f')
+            return self.counter_clock_wise(letter, shift_num)
+        return encrypted_letter
 
     def print(self):
         if self.front:
@@ -103,8 +117,19 @@ class Clock_queue:
 
 
 if __name__ == '__main__':
-    clock_queue = Clock_queue()
-    clock_queue.enqueue('a', 'r')
-    clock_queue.enqueue('b', 'r')
-    clock_queue.enqueue('c', 'r')
-    print(clock_queue.clock_wise('a', 1))
+    alphabet = Clock_queue()
+    whole_alphabets = list(string.ascii_lowercase)
+    for letter in whole_alphabets:
+        alphabet.enqueue(letter, 'r')
+    list1 = 'hello world'
+    # list2 = 'pmttw'
+    secret_msg = ''
+    decrypt_msg = ''
+    for letter_e in list1:
+        encrypt = alphabet.clock_wise(letter_e, 8)
+        secret_msg += encrypt
+    for letter_d in secret_msg:
+        decrypt = alphabet.counter_clock_wise(letter_d, 8)
+        decrypt_msg += decrypt
+    print(secret_msg)
+    print(decrypt_msg)
